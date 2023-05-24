@@ -1,0 +1,49 @@
+import java.util.*;
+import java.math.BigInteger;
+public class Main
+{
+	public static void main(String[] args) {
+		//Parametros de entrada
+		int iCns = 999999; //CNS do cartorio
+        int iNumReg = 100; //Numero de registro (matricula)
+        int iNumLivro = 2; //Codigo Livro (2 ou 3)
+        
+        //Gera Digito Verificador CNM
+        String xCnm = geraCNM(iCns, iNumReg, iNumLivro);
+        System.out.println(xCnm);
+        
+        //Valida Digito Verificador CNM
+        String xCnmPesq = "999999.2.0000100-08";
+        if(validaCNM(xCnmPesq)){
+            System.out.println("Codigo Verificador Válido!");    
+        } else {
+            System.out.println("Inválido!");      
+        }
+        
+	}
+	
+	private static String geraCNM(int iCns, int iNumReg, int iNumLivro){
+        String xNumReg = String.format("%07d", iNumReg);
+        String xCnmTemp = Integer.toString(iCns)+Integer.toString(iNumLivro)+xNumReg+"00";
+        BigInteger biCnm = new BigInteger(xCnmTemp);
+        
+        BigInteger biResMod = biCnm.mod(new BigInteger("97"));
+        int iDv = 98 - biResMod.intValue();
+        String xDv = String.format("%02d", iDv);
+        
+        String xCnm = String.format("%06d", iCns)+"."+Integer.toString(iNumLivro)+"."+xNumReg+"-"+xDv;
+        return xCnm;    
+    }
+    
+    private static boolean validaCNM(String xCnm){
+        boolean bRetorno = false;
+        
+        BigInteger biCnm = new BigInteger(xCnm.replaceAll("[^0-9]", ""));
+        BigInteger biResMod = biCnm.mod(new BigInteger("97"));
+        if(biResMod.intValue() == 1){
+            bRetorno = true;
+        } 
+        
+        return bRetorno;
+    }
+}
