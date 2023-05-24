@@ -1,0 +1,40 @@
+<?php
+// Parametros de entrada
+$iCns = 999999; // CNS do cartorio
+$iNumReg = 100; // Numero de registro (matricula)
+$iNumLivro = 2; // Codigo Livro (2 ou 3)
+
+// Gera Digito Verificador CNM
+$xCnm = geraCNM($iCns, $iNumReg, $iNumLivro);
+echo $xCnm . "\n";
+
+// Valida Digito Verificador CNM
+$xCnmPesq = "999999.2.0000100-08";
+if (validaCNM($xCnmPesq)) {
+    echo "Codigo Verificador Válido!\n";
+} else {
+    echo "Inválido!\n";
+}
+
+function geraCNM($iCns, $iNumReg, $iNumLivro) {
+    $xCnmTemp = str_pad($iCns, 6, '0', STR_PAD_LEFT).$iNumLivro.str_pad($iNumReg, 7, '0', STR_PAD_LEFT).'00';
+    $xMod = bcmod($xCnmTemp, 97);
+    $xDv = 98 -$xMod;
+
+    $xCnm = str_pad($iCns, 6, '0', STR_PAD_LEFT).'.'.$iNumLivro.'.'.str_pad($iNumReg, 7, '0', STR_PAD_LEFT).'-'.str_pad($xDv, 2, '0', STR_PAD_LEFT);
+    return $xCnm;
+}
+
+function validaCNM($xCnm) {
+    $bRetorno = false;
+    
+    $xNumerosCNM = preg_replace("/[^0-9]/", "", $xCnm );
+    $xMod = bcmod($xNumerosCNM, 97);
+    if($xMod == 1){
+    	$bRetorno = true;
+    } 	
+    
+    return $bRetorno;
+}
+
+?>
