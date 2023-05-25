@@ -16,5 +16,4 @@ def CnmGenerator(cns, number):
     preCnm = cns + str(livro) + str(matricula)
     getCnm = calcMod97base10(preCnm)
 
-    
     return getCnm[2]
