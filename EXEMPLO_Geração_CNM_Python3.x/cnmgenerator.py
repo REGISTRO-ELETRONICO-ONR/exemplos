@@ -17,5 +17,5 @@ def CnmGenerator(cns, livro, number):
         getCnm = calcMod97base10(preCnm)
         return getCnm
     else:
-        return 'Erro: Livro informado não é válido'
+        return 'Erro: livro informado não é válido'
 
