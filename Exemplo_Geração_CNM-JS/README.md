@@ -8,11 +8,12 @@ A função utiliza a biblioteca `cdigit` para calcular o dígito verificador do 
 ## Parâmetros
 - `cns` (string): O número do CNS a ser utilizado para gerar o número CNM.
 - `number` (string): O número de registro a ser utilizado para gerar o número CNM. Este número deve ter no máximo 7 dígitos.
+- `book` (string): O tipo de livro associado ao número CNM. Este valor pode ser uma string representando o tipo de livro desejado.
 
 ## Retorno
 A função retorna uma string contendo o número CNM formatado no seguinte padrão: "CNS.BOOK.NUMBER-DIGIT", onde:
 - `CNS` é o número do CNS fornecido como parâmetro.
-- `BOOK` é o valor fixo "2" (representando o tipo de livro associado ao número CNM).
+- `BOOK` é o valor do parâmetro book (representando o tipo de livro associado ao número CNM).
 - `NUMBER` é o número de matrícula fornecido como parâmetro.
 - `DIGIT` é o dígito verificador calculado pela função.
 
