@@ -1,0 +1,24 @@
+{
+  "name": "cns",
+  "version": "1.0.0",
+  "description": "Generate CNS V2.0",
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "rimraf ./build && tsc",
+    "start": "npm run build && node build/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.2.3",
+    "nodemon": "^2.0.22",
+    "rimraf": "^5.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "cdigit": "^4.0.1"
+  },
+  "type": "module"
+}
