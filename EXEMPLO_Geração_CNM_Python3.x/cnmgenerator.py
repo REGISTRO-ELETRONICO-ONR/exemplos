@@ -10,10 +10,12 @@ def calcMod97base10(num):
 
     return matriculaCnm
 
-def CnmGenerator(cns, number):
-    matricula = str(number).zfill(7)
-    livro = 2
-    preCnm = cns + str(livro) + str(matricula)
-    getCnm = calcMod97base10(preCnm)
+def CnmGenerator(cns, livro, number):
+    if livro == 2 or livro == 3:
+        matricula = str(number).zfill(7)
+        preCnm = cns + str(livro) + str(matricula)
+        getCnm = calcMod97base10(preCnm)
+        return getCnm
+    else:
+        return 'Erro: Livro informado não é válido'
 
-    return getCnm
