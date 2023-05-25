@@ -8,7 +8,7 @@ def calcMod97base10(num):
     matricula = cnm[7:14]
     matriculaCnm = cns + '.' + livro + '.' + matricula + '-' + digVerificador
 
-    return cns, matricula, matriculaCnm
+    return matriculaCnm
 
 def CnmGenerator(cns, number):
     matricula = str(number).zfill(7)
@@ -16,4 +16,4 @@ def CnmGenerator(cns, number):
     preCnm = cns + str(livro) + str(matricula)
     getCnm = calcMod97base10(preCnm)
 
-    return getCnm[2]
+    return getCnm
