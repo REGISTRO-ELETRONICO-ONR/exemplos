@@ -4,7 +4,7 @@
 
 #### pip install python-stdnum==1.0
 
-## Uso do Exemplo
+## Uso do Exemplo:
 
 #### Passar CNS e Número da Matricula na função CnmGenerator
 
